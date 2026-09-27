@@ -5,23 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>فقط «سلام» ننویس!</title>
 <meta name="description" content="چرا فرستادن پیام تنها با «سلام» و منتظر ماندن برای پاسخ، وقت همه را هدر می‌دهد و چه‌کار بهتری می‌شود انجام داد.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="فقط «سلام» ننویس! | Don't Just Say Hello">
+<meta property="og:description" content="راهنمای کوتاه آداب چت: سلام را با اصل مطلب یکجا بفرست، نه جدا. A short guide to async chat etiquette.">
+<meta property="og:image" content="assets/og-image.png">
+<meta property="og:url" content="https://example.github.io/NoHello/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="فقط «سلام» ننویس!">
+<meta name="twitter:description" content="سلام را با اصل مطلب یکجا بفرست، نه جدا.">
+<meta name="twitter:image" content="assets/og-image.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%AB%3C/text%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #f7f5f2;
     --surface: #ffffff;
     --text: #1e1b16;
-    --text-muted: #6b6156;
-    --accent: #d6482f;
-    --accent-dark: #b83a24;
-    --good: #2f8f5b;
-    --good-bg: #eaf6ef;
-    --bad: #d6482f;
+    --text-muted: #554d43;
+    --accent: #c33d26;
+    --accent-dark: #a53019;
+    --good: #257a4a;
+    --good-bg: #e8f5ee;
+    --bad: #c33d26;
     --bad-bg: #fbeae6;
     --border: #e7e1d8;
     --shadow: 0 10px 30px -12px rgba(30, 27, 22, 0.15);
+    --focus: #1d6fd6;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -29,15 +43,16 @@
       --bg: #16140f;
       --surface: #201d17;
       --text: #f2ede4;
-      --text-muted: #a89c8c;
-      --accent: #ff8264;
-      --accent-dark: #ff6a45;
-      --good: #63c795;
+      --text-muted: #bdb0a0;
+      --accent: #ff9478;
+      --accent-dark: #ff7a57;
+      --good: #74d3a3;
       --good-bg: #17281f;
-      --bad: #ff8264;
+      --bad: #ff9478;
       --bad-bg: #2b1a15;
       --border: #332e25;
       --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+      --focus: #6ab2ff;
     }
   }
 
@@ -45,15 +60,16 @@
     --bg: #16140f;
     --surface: #201d17;
     --text: #f2ede4;
-    --text-muted: #a89c8c;
-    --accent: #ff8264;
-    --accent-dark: #ff6a45;
-    --good: #63c795;
+    --text-muted: #bdb0a0;
+    --accent: #ff9478;
+    --accent-dark: #ff7a57;
+    --good: #74d3a3;
     --good-bg: #17281f;
-    --bad: #ff8264;
+    --bad: #ff9478;
     --bad-bg: #2b1a15;
     --border: #332e25;
     --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+    --focus: #6ab2ff;
   }
 
   * { box-sizing: border-box; }
@@ -72,13 +88,59 @@
     transition: background .2s ease, color .2s ease;
   }
 
+  html[lang="en"] body { font-family: 'Inter', 'Vazirmatn', sans-serif; }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  .skip-link {
+    position: absolute;
+    inset-inline-start: 12px;
+    top: -60px;
+    background: var(--focus);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    z-index: 100;
+    transition: top .15s ease;
+    font-weight: 600;
+  }
+  .skip-link:focus { top: 12px; }
+
   .wrap {
-    max-width: 760px;
+    max-width: 780px;
     margin: 0 auto;
   }
 
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .toolbar button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .toolbar button:hover { border-color: var(--accent); }
+
   header {
-    padding: 48px 0 24px;
+    padding: 32px 0 24px;
     text-align: center;
   }
 
@@ -95,7 +157,7 @@
   }
 
   h1 {
-    font-size: clamp(28px, 6vw, 42px);
+    font-size: clamp(26px, 6vw, 42px);
     font-weight: 800;
     margin: 0 0 12px;
     letter-spacing: -0.02em;
@@ -108,21 +170,12 @@
     margin: 0 auto;
   }
 
-  section {
-    margin-top: 40px;
-  }
+  section { margin-top: 36px; }
 
-  h2 {
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0 0 14px;
-  }
+  h2 { font-size: 22px; font-weight: 700; margin: 0 0 14px; }
+  h3 { font-size: 16px; font-weight: 700; margin: 0 0 10px; }
 
-  p {
-    font-size: 16px;
-    margin: 0 0 14px;
-    color: var(--text);
-  }
+  p { font-size: 16px; margin: 0 0 14px; color: var(--text); }
 
   .card {
     background: var(--surface);
@@ -132,11 +185,43 @@
     box-shadow: var(--shadow);
   }
 
+  /* ---------- Tabs ---------- */
+  .tablist {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-bottom: 18px;
+    scrollbar-width: thin;
+  }
+  .tablist::-webkit-scrollbar { height: 6px; }
+  .tablist::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+
+  .tab {
+    flex: 0 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .tab[aria-selected="true"] {
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .tabpanel[hidden] { display: none; }
+
   .compare {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-    margin-top: 20px;
   }
 
   @media (max-width: 560px) {
@@ -171,38 +256,53 @@
     margin-bottom: 10px;
     font-size: 14.5px;
     box-shadow: 0 1px 3px rgba(0,0,0,.08);
-    max-width: 90%;
+    max-width: 92%;
   }
 
-  .bubble.mine {
-    margin-inline-start: auto;
-    background: var(--accent);
-    color: #fff;
+  .bubble.mine { margin-inline-start: auto; background: var(--accent); color: #fff; }
+
+  .bubble .meta { display: block; font-size: 11px; opacity: .65; margin-top: 4px; }
+
+  .gap { font-size: 12px; color: var(--text-muted); text-align: center; margin: 4px 0 10px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tabpanel:not([hidden]) .bubble { animation: bubbleIn .35s ease both; }
+    .tabpanel:not([hidden]) .bubble:nth-of-type(1) { animation-delay: .05s; }
+    .tabpanel:not([hidden]) .bubble:nth-of-type(2) { animation-delay: .2s; }
+    .tabpanel:not([hidden]) .bubble:nth-of-type(3) { animation-delay: .35s; }
+    .tabpanel:not([hidden]) .bubble:nth-of-type(4) { animation-delay: .5s; }
+  }
+  @keyframes bubbleIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .bubble .meta {
-    display: block;
-    font-size: 11px;
-    opacity: .65;
-    margin-top: 4px;
+  .typing-indicator {
+    display: inline-flex;
+    gap: 4px;
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .typing-indicator span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-muted);
+    animation: bounce 1s infinite ease-in-out;
+  }
+  .typing-indicator span:nth-child(2) { animation-delay: .15s; }
+  .typing-indicator span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: .5; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .typing-indicator span { animation: none; }
+    .tabpanel .bubble { animation: none !important; }
   }
 
-  .gap {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-align: center;
-    margin: 4px 0 10px;
-  }
-
-  ul.points {
-    padding-inline-start: 22px;
-    margin: 0 0 14px;
-  }
-
-  ul.points li {
-    margin-bottom: 8px;
-    font-size: 16px;
-  }
+  ul.points { padding-inline-start: 22px; margin: 0 0 14px; }
+  ul.points li { margin-bottom: 8px; font-size: 16px; }
 
   .callout {
     border-inline-start: 4px solid var(--accent);
@@ -213,28 +313,42 @@
     color: var(--text);
   }
 
+  /* ---------- FAQ ---------- */
+  .faq details {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    background: var(--surface);
+  }
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15.5px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+";
+    font-size: 20px;
+    color: var(--accent);
+    flex: 0 0 auto;
+    transition: transform .2s ease;
+  }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq p { margin-top: 10px; color: var(--text-muted); }
+
   footer {
     margin-top: 56px;
     text-align: center;
     color: var(--text-muted);
     font-size: 13px;
   }
-
   footer a { color: var(--accent-dark); }
-
-  .theme-toggle {
-    position: fixed;
-    top: 16px;
-    left: 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 8px 14px;
-    font-family: inherit;
-    font-size: 13px;
-    cursor: pointer;
-    color: var(--text);
-  }
 
   code {
     background: var(--bad-bg);
@@ -244,122 +358,522 @@
     direction: ltr;
     display: inline-block;
   }
+
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--text);
+    color: var(--bg);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+    z-index: 50;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 380px) {
+    body { padding: 0 10px 48px; }
+    .card { padding: 18px 16px; }
+    .toolbar button { font-size: 12px; padding: 7px 11px; }
+    .lede, p, ul.points li { font-size: 15px; }
+  }
 </style>
 </head>
 <body>
 
-<button class="theme-toggle" id="themeToggle" aria-label="تغییر حالت روشن و تاریک">🌓 تم</button>
+<a class="skip-link" href="#main" id="skipLink">پرش به محتوای اصلی</a>
 
-<div class="wrap">
-  <header>
-    <span class="badge">راهنمای آداب چت</span>
-    <h1>فقط «سلام» ننویس!</h1>
-    <p class="lede">
-      اگر سؤالی داری، همون اول بپرسش. فرستادن یک پیام تنها با «سلام» یا «ببخشید یه سؤال دارم»
-      و بعد نشستن و منتظرِ پاسخ موندن، فقط وقتِ خودت و طرفِ مقابل رو هدر می‌ده.
-    </p>
-  </header>
-
-  <section class="card">
-    <h2>ماجرا چیه؟</h2>
-    <p>
-      یه الگوی رایج در چت، ایمیل و پیام‌رسان‌ها وجود داره که این شکلیه:
-    </p>
-    <ol class="points">
-      <li>یک نفر پیام می‌ده: «سلام»</li>
-      <li>بعد منتظر می‌مونه تا طرف مقابل آنلاین بشه و جواب بده</li>
-      <li>وقتی طرف مقابل جواب داد، تازه می‌گه: «یه سؤال داشتم...»</li>
-      <li>و بعد از اون، سؤالِ واقعی رو مطرح می‌کنه</li>
-    </ol>
-    <p>
-      این یعنی بین اولین پیام و رسیدن سؤالِ واقعی، چند بار رفت‌وبرگشتِ اضافه و بی‌فایده اتفاق می‌افته؛
-      در حالی که همه‌ی اون‌ها می‌تونست در همون یک پیام اول جا بشه.
-    </p>
-  </section>
-
-  <section>
-    <h2>مقایسه‌ی دو حالت</h2>
-    <div class="compare">
-      <div class="chat bad">
-        <div class="chat-label">❌ روش وقت‌گیر</div>
-        <div class="bubble">سلام<span class="meta">10:00</span></div>
-        <div class="gap">… ۴۵ دقیقه سکوت …</div>
-        <div class="bubble">هستی؟<span class="meta">10:45</span></div>
-        <div class="gap">… ۲۰ دقیقه سکوت …</div>
-        <div class="bubble mine">بله، بگو<span class="meta">11:05</span></div>
-        <div class="bubble">یه سؤال داشتم درباره‌ی پروژه<span class="meta">11:06</span></div>
-        <div class="gap">حالا نوبت سؤال اصلیه…</div>
-      </div>
-      <div class="chat good">
-        <div class="chat-label">✅ روش درست</div>
-        <div class="bubble">
-          سلام! توی فایل تنظیمات پروژه، متغیر <code>API_KEY</code> پیدا نمی‌شه.
-          آیا باید تو <code>.env</code> اضافه‌ش کنم یا جای دیگه‌ای تعریف شده؟
-          <span class="meta">10:00</span>
-        </div>
-        <div class="bubble mine">
-          باید تو فایل <code>.env</code> اضافه‌ش کنی، نمونه‌ش تو <code>.env.example</code> هست.
-          <span class="meta">10:03</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>چرا این کار مهمه؟</h2>
-    <ul class="points">
-      <li><strong>وقتِ همه ارزشمنده:</strong> منتظر ماندن برای شنیدنِ سؤال، زمانی رو هدر می‌ده که می‌شد صرفِ جواب دادن بشه.</li>
-      <li><strong>ارتباط ناهمزمانه:</strong> در چتِ کاری، معمولاً طرف مقابل فوراً آنلاین نیست؛ اگه سؤالت رو کامل ننویسی، باید منتظرِ چند دور رفت‌وبرگشت بمونی.</li>
-      <li><strong>جست‌وجو و پیگیری راحت‌تر می‌شه:</strong> وقتی همه‌چیز تو یک پیام باشه، بعداً پیدا کردنش یا فرستادنش به یه نفر دیگه ساده‌تره.</li>
-      <li><strong>احترام به وقتِ دیگران:</strong> این کار نشون می‌ده که به زمانِ طرفِ مقابل اهمیت می‌دی.</li>
-    </ul>
-  </section>
-
-  <section class="card">
-    <h2>پس چیکار کنیم؟</h2>
-    <p>به جای این که فقط بنویسی «سلام» یا «یه سؤال داشتم»، همه‌چیز رو یکجا بفرست:</p>
-    <div class="callout">
-      سلام + توضیحِ مختصرِ زمینه + سؤال یا درخواستِ دقیق
-    </div>
-    <p style="margin-top:16px;">
-      اگه طرف مقابل آنلاین نبود، پیامت همون‌جا منتظرش می‌مونه و می‌تونه هر وقت فرصت کرد،
-      یک‌باره جوابِ کامل بده؛ بدون نیاز به چند دور «سلام»، «هستی؟»، «بگو».
-    </p>
-  </section>
-
-  <section class="card">
-    <h2>یه نکته‌ی مهم</h2>
-    <p>
-      این یعنی نباید مؤدب باشیم؟ نه! سلام کردن اشکالی نداره، فقط <strong>تنها</strong> چیزی
-      که می‌فرستی نباشه. سلام رو با اصل مطلب یکجا بفرست، همین.
-    </p>
-  </section>
-
-  <footer>
-    این صفحه ترجمه و بازنویسیِ فارسیِ ایده‌ی معروفِ
-    «<a href="https://nohello.net" target="_blank" rel="noopener">nohello.net</a>»
-    است.
-  </footer>
+<div class="toolbar">
+  <button id="langToggle" type="button">English</button>
+  <button id="themeToggle" type="button" aria-pressed="false">🌓 <span id="themeLabel">تغییر تم</span></button>
+  <button id="copyLink" type="button">🔗 <span id="copyLabel">کپی لینک</span></button>
 </div>
 
-<script>
-  (function () {
-    var btn = document.getElementById('themeToggle');
-    var root = document.documentElement;
-    try {
-      var saved = localStorage.getItem('nohello-theme');
-      if (saved) root.setAttribute('data-theme', saved);
-    } catch (e) {}
+<div class="wrap" id="main">
 
-    btn.addEventListener('click', function () {
-      var current = root.getAttribute('data-theme');
-      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var isDark = current ? current === 'dark' : prefersDark;
-      var next = isDark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('nohello-theme', next); } catch (e) {}
+  <!-- ================= FARSI ================= -->
+  <div id="content-fa" lang="fa" dir="rtl">
+    <header>
+      <span class="badge">راهنمای آداب چت</span>
+      <h1>فقط «سلام» ننویس!</h1>
+      <p class="lede">
+        اگر سؤالی داری، همون اول بپرسش. فرستادن یک پیام تنها با «سلام» یا «ببخشید یه سؤال دارم»
+        و بعد نشستن و منتظرِ پاسخ موندن، فقط وقتِ خودت و طرفِ مقابل رو هدر می‌ده.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>ماجرا چیه؟</h2>
+      <p>یه الگوی رایج در چت، ایمیل و پیام‌رسان‌ها وجود داره که این شکلیه:</p>
+      <ol class="points">
+        <li>یک نفر پیام می‌ده: «سلام»</li>
+        <li>بعد منتظر می‌مونه تا طرف مقابل آنلاین بشه و جواب بده</li>
+        <li>وقتی طرف مقابل جواب داد، تازه می‌گه: «یه سؤال داشتم...»</li>
+        <li>و بعد از اون، سؤالِ واقعی رو مطرح می‌کنه</li>
+      </ol>
+      <p>این یعنی بین اولین پیام و رسیدن سؤالِ واقعی، چند بار رفت‌وبرگشتِ اضافه و بی‌فایده اتفاق می‌افته؛ در حالی که همه‌ی اون‌ها می‌تونست در همون یک پیام اول جا بشه.</p>
+    </section>
+
+    <section>
+      <h2>چند تا مثال</h2>
+      <div class="tablist" role="tablist" aria-label="سناریوهای مختلف">
+        <button class="tab" role="tab" id="fa-tab-0" aria-controls="fa-panel-0" aria-selected="true">چت کاری</button>
+        <button class="tab" role="tab" id="fa-tab-1" aria-controls="fa-panel-1" aria-selected="false" tabindex="-1">ایمیل</button>
+        <button class="tab" role="tab" id="fa-tab-2" aria-controls="fa-panel-2" aria-selected="false" tabindex="-1">تیکت پشتیبانی</button>
+        <button class="tab" role="tab" id="fa-tab-3" aria-controls="fa-panel-3" aria-selected="false" tabindex="-1">پیام به همکار</button>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="fa-panel-0" aria-labelledby="fa-tab-0">
+        <div class="compare">
+          <div class="chat bad">
+            <div class="chat-label">❌ روش وقت‌گیر</div>
+            <div class="bubble">سلام<span class="meta">۱۰:۰۰</span></div>
+            <div class="gap">… ۴۵ دقیقه سکوت …</div>
+            <div class="bubble">هستی؟<span class="meta">۱۰:۴۵</span></div>
+            <div class="gap">… ۲۰ دقیقه سکوت …</div>
+            <div class="bubble mine">بله، بگو<span class="meta">۱۱:۰۵</span></div>
+            <div class="bubble">یه سؤال داشتم درباره‌ی پروژه<span class="meta">۱۱:۰۶</span></div>
+            <div class="gap">حالا نوبت سؤال اصلیه…</div>
+          </div>
+          <div class="chat good">
+            <div class="chat-label">✅ روش درست</div>
+            <div class="bubble">سلام! توی فایل تنظیمات پروژه، متغیر <code>API_KEY</code> پیدا نمی‌شه. آیا باید تو <code>.env</code> اضافه‌ش کنم یا جای دیگه‌ای تعریف شده؟<span class="meta">۱۰:۰۰</span></div>
+            <div class="typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="bubble mine reply" hidden>باید تو فایل <code>.env</code> اضافه‌ش کنی، نمونه‌ش تو <code>.env.example</code> هست.<span class="meta">۱۰:۰۳</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="fa-panel-1" aria-labelledby="fa-tab-1" hidden>
+        <div class="compare">
+          <div class="chat bad">
+            <div class="chat-label">❌ روش وقت‌گیر</div>
+            <div class="bubble">موضوع: سؤال<br>سلام، وقت دارید؟<span class="meta">۰۹:۰۰</span></div>
+            <div class="gap">… ۳ ساعت بعد …</div>
+            <div class="bubble mine">بله بفرمایید<span class="meta">۱۲:۰۰</span></div>
+            <div class="bubble">ممنون! می‌خواستم بپرسم سرور staging کِی آپدیت می‌شه؟<span class="meta">۱۲:۰۵</span></div>
+            <div class="gap">حالا باید دوباره منتظر جواب بمونه…</div>
+          </div>
+          <div class="chat good">
+            <div class="chat-label">✅ روش درست</div>
+            <div class="bubble">موضوع: زمان آپدیت سرور staging؟<br>سلام، می‌خواستم بدونم سرور staging امروز آپدیت می‌شه یا نه، چون یه تست دارم که بهش وابسته‌ست. ممنون می‌شم اگه بگید تقریباً چه ساعتی.<span class="meta">۰۹:۰۰</span></div>
+            <div class="typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="bubble mine reply" hidden>سلام، بله امروز ساعت ۱۴ آپدیت می‌شه.<span class="meta">۰۹:۲۰</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="fa-panel-2" aria-labelledby="fa-tab-2" hidden>
+        <div class="compare">
+          <div class="chat bad">
+            <div class="chat-label">❌ روش وقت‌گیر</div>
+            <div class="bubble">سلام، مشکل دارم<span class="meta">۱۴:۰۰</span></div>
+            <div class="bubble mine">سلام، چه مشکلی پیش اومده؟<span class="meta">۱۴:۱۰</span></div>
+            <div class="bubble">برنامه باز نمی‌شه<span class="meta">۱۴:۱۱</span></div>
+            <div class="bubble mine">چه پیغام خطایی می‌بینید؟ چه سیستم‌عاملی دارید؟<span class="meta">۱۴:۱۲</span></div>
+            <div class="gap">و همین‌طور ادامه پیدا می‌کنه…</div>
+          </div>
+          <div class="chat good">
+            <div class="chat-label">✅ روش درست</div>
+            <div class="bubble">سلام، برنامه‌ی X روی ویندوز ۱۱ باز نمی‌شه و پیغام «Error 0x8007» می‌ده. نسخه‌ی برنامه ۲.۳ هست. لطفاً راهنمایی کنید.<span class="meta">۱۴:۰۰</span></div>
+            <div class="typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="bubble mine reply" hidden>سلام، این خطا مربوط به .NET Framework هست. لطفاً نسخه‌ی ۴.۸ رو نصب کنید و دوباره امتحان کنید.<span class="meta">۱۴:۰۵</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="fa-panel-3" aria-labelledby="fa-tab-3" hidden>
+        <div class="compare">
+          <div class="chat bad">
+            <div class="chat-label">❌ روش وقت‌گیر</div>
+            <div class="bubble">سلام میشه کمک کنی؟<span class="meta">۱۶:۰۰</span></div>
+            <div class="bubble mine">بله بگو<span class="meta">۱۶:۲۰</span></div>
+            <div class="bubble">دسترسی به دیتابیس ندارم<span class="meta">۱۶:۲۱</span></div>
+            <div class="bubble mine">کدوم دیتابیس؟ چه خطایی؟<span class="meta">۱۶:۲۲</span></div>
+            <div class="gap">و همین‌طور ادامه پیدا می‌کنه…</div>
+          </div>
+          <div class="chat good">
+            <div class="chat-label">✅ روش درست</div>
+            <div class="bubble">سلام! به دیتابیس staging دسترسی ندارم، خطای «Access Denied» می‌گیرم. میشه دسترسیمو اضافه کنی؟ یوزرنیم: aphexi<span class="meta">۱۶:۰۰</span></div>
+            <div class="typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="bubble mine reply" hidden>الان اضافه کردم، دوباره امتحان کن.<span class="meta">۱۶:۰۴</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>چرا این کار مهمه؟</h2>
+      <ul class="points">
+        <li><strong>وقتِ همه ارزشمنده:</strong> منتظر ماندن برای شنیدنِ سؤال، زمانی رو هدر می‌ده که می‌شد صرفِ جواب دادن بشه.</li>
+        <li><strong>ارتباط ناهمزمانه:</strong> در چتِ کاری، معمولاً طرف مقابل فوراً آنلاین نیست؛ اگه سؤالت رو کامل ننویسی، باید منتظرِ چند دور رفت‌وبرگشت بمونی.</li>
+        <li><strong>جست‌وجو و پیگیری راحت‌تر می‌شه:</strong> وقتی همه‌چیز تو یک پیام باشه، بعداً پیدا کردنش یا فرستادنش به یه نفر دیگه ساده‌تره.</li>
+        <li><strong>احترام به وقتِ دیگران:</strong> این کار نشون می‌ده که به زمانِ طرفِ مقابل اهمیت می‌دی.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>پس چیکار کنیم؟</h2>
+      <p>به جای این که فقط بنویسی «سلام» یا «یه سؤال داشتم»، همه‌چیز رو یکجا بفرست:</p>
+      <div class="callout">سلام + توضیحِ مختصرِ زمینه + سؤال یا درخواستِ دقیق</div>
+      <p style="margin-top:16px;">اگه طرف مقابل آنلاین نبود، پیامت همون‌جا منتظرش می‌مونه و می‌تونه هر وقت فرصت کرد، یک‌باره جوابِ کامل بده؛ بدون نیاز به چند دور «سلام»، «هستی؟»، «بگو».</p>
+    </section>
+
+    <section class="card">
+      <h2>یه نکته‌ی مهم</h2>
+      <p>این یعنی نباید مؤدب باشیم؟ نه! سلام کردن اشکالی نداره، فقط <strong>تنها</strong> چیزی که می‌فرستی نباشه. سلام رو با اصل مطلب یکجا بفرست، همین.</p>
+    </section>
+
+    <section class="faq">
+      <h2>سؤالات پرتکرار</h2>
+      <details>
+        <summary>مگه سلام کردن بی‌ادبی نیست؟</summary>
+        <p>نه، اصلاً! سلام کردن مشکلی نداره؛ فقط سلام رو با اصل مطلب تو یک پیام بفرست، نه این‌که سلام رو تنها بفرستی و منتظر جواب بمونی.</p>
+      </details>
+      <details>
+        <summary>اگه سؤالم خیلی طولانیه چی؟</summary>
+        <p>بازم بهتره اول یه خلاصه‌ی کوتاه از موضوع بدی و بگی که جزئیات بیشتری هم داری، تا طرف مقابل بدونه باید برای چی وقت بذاره.</p>
+      </details>
+      <details>
+        <summary>تو فرهنگ ما این‌جوری تعارف می‌کنیم؛ این حرف بی‌احترامیه؟</summary>
+        <p>این صفحه درباره‌ی ادب نیست، درباره‌ی کاراییِ ارتباط نوشتاریه؛ خصوصاً وقتی طرف مقابل آنلاین نیست و باید منتظر بمونی.</p>
+      </details>
+      <details>
+        <summary>این فقط برای چت متنیه؟</summary>
+        <p>بیشترین کاربردش تو ارتباط ناهمزمانه (چت، ایمیل، تیکت) هست؛ توی تماس صوتی یا حضوری چون هر دو طرف همون لحظه حاضرن، مشکل کمتره.</p>
+      </details>
+      <details>
+        <summary>اگه خودم دقیق ندونم سؤالم چیه؟</summary>
+        <p>بازم توضیح بده چی می‌دونی و چی نمی‌دونی؛ حتی یه توضیح ناقص بهتر از فقط «سلام»ِ تنهاست، چون طرف مقابل زودتر می‌تونه فکر کنه.</p>
+      </details>
+    </section>
+
+    <footer>
+      این صفحه ترجمه و بازنویسیِ فارسیِ ایده‌ی معروفِ
+      «<a href="https://nohello.net" target="_blank" rel="noopener">nohello.net</a>» است.
+    </footer>
+  </div>
+
+  <!-- ================= ENGLISH ================= -->
+  <div id="content-en" lang="en" dir="ltr" hidden>
+    <header>
+      <span class="badge">Chat etiquette guide</span>
+      <h1>Don't Just Say Hello!</h1>
+      <p class="lede">
+        If you have a question, ask it right away. Sending a message that's just "hi" or
+        "quick question" and then waiting for a reply only wastes your time and theirs.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>What's going on?</h2>
+      <p>A common pattern in chat, email, and messaging apps looks like this:</p>
+      <ol class="points">
+        <li>Someone sends: "Hi"</li>
+        <li>Then waits for the other person to come online and reply</li>
+        <li>Once they reply, only then says: "I had a question..."</li>
+        <li>And only after that, asks the actual question</li>
+      </ol>
+      <p>That means several extra, wasted round-trips happen between the first message and the real question — when all of it could have fit in that first message.</p>
+    </section>
+
+    <section>
+      <h2>A few examples</h2>
+      <div class="tablist" role="tablist" aria-label="Different scenarios">
+        <button class="tab" role="tab" id="en-tab-0" aria-controls="en-panel-0" aria-selected="true">Work chat</button>
+        <button class="tab" role="tab" id="en-tab-1" aria-controls="en-panel-1" aria-selected="false" tabindex="-1">Email</button>
+        <button class="tab" role="tab" id="en-tab-2" aria-controls="en-panel-2" aria-selected="false" tabindex="-1">Support ticket</button>
+        <button class="tab" role="tab" id="en-tab-3" aria-controls="en-panel-3" aria-selected="false" tabindex="-1">Coworker DM</button>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="en-panel-0" aria-labelledby="en-tab-0">
+        <div class="compare">
+          <div class="chat bad">
+            <div class="chat-label">❌ The slow way</div>
+            <div class="bubble">hi<span class="meta">10:00</span></div>
+            <div class="gap">… 45 minutes of silence …</div>
+            <div class="bubble">you there?<span class="meta">10:45</span></div>
+            <div class="gap">… 20 minutes of silence …</div>
+            <div class="bubble mine">yep, go ahead<span class="meta">11:05</span></div>
+            <div class="bubble">had a question about the project<span class="meta">11:06</span></div>
+            <div class="gap">now the real question comes…</div>
+          </div>
+          <div class="chat good">
+            <div class="chat-label">✅ The right way</div>
+            <div class="bubble">Hi! I can't find the <code>API_KEY</code> variable in the project config. Should I add it to <code>.env</code> or is it defined somewhere else?<span class="meta">10:00</span></div>
+            <div class="typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="bubble mine reply" hidden>Add it to <code>.env</code> — there's a sample in <code>.env.example</code>.<span class="meta">10:03</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="en-panel-1" aria-labelledby="en-tab-1" hidden>
+        <div class="compare">
+          <div class="chat bad">
+            <div class="chat-label">❌ The slow way</div>
+            <div class="bubble">Subject: Question<br>Hi, got a minute?<span class="meta">09:00</span></div>
+            <div class="gap">… 3 hours later …</div>
+            <div class="bubble mine">Sure, go ahead<span class="meta">12:00</span></div>
+            <div class="bubble">Thanks! I wanted to ask when the staging server gets updated<span class="meta">12:05</span></div>
+            <div class="gap">now another wait for the reply…</div>
+          </div>
+          <div class="chat good">
+            <div class="chat-label">✅ The right way</div>
+            <div class="bubble">Subject: When does staging get updated?<br>Hi, I wanted to know if the staging server is being updated today — I have a test that depends on it. Could you let me know roughly what time?<span class="meta">09:00</span></div>
+            <div class="typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="bubble mine reply" hidden>Hi, yes — it'll be updated today at 2pm.<span class="meta">09:20</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="en-panel-2" aria-labelledby="en-tab-2" hidden>
+        <div class="compare">
+          <div class="chat bad">
+            <div class="chat-label">❌ The slow way</div>
+            <div class="bubble">Hi, I have an issue<span class="meta">14:00</span></div>
+            <div class="bubble mine">Hi, what's the issue?<span class="meta">14:10</span></div>
+            <div class="bubble">The app won't open<span class="meta">14:11</span></div>
+            <div class="bubble mine">What error do you see? What OS are you on?<span class="meta">14:12</span></div>
+            <div class="gap">and it keeps going…</div>
+          </div>
+          <div class="chat good">
+            <div class="chat-label">✅ The right way</div>
+            <div class="bubble">Hi, App X won't open on Windows 11 and shows "Error 0x8007". App version is 2.3. Could you help?<span class="meta">14:00</span></div>
+            <div class="typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="bubble mine reply" hidden>Hi, that error is related to .NET Framework. Please install version 4.8 and try again.<span class="meta">14:05</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="en-panel-3" aria-labelledby="en-tab-3" hidden>
+        <div class="compare">
+          <div class="chat bad">
+            <div class="chat-label">❌ The slow way</div>
+            <div class="bubble">hey can you help?<span class="meta">16:00</span></div>
+            <div class="bubble mine">sure, what's up<span class="meta">16:20</span></div>
+            <div class="bubble">I don't have DB access<span class="meta">16:21</span></div>
+            <div class="bubble mine">which database? what error?<span class="meta">16:22</span></div>
+            <div class="gap">and it keeps going…</div>
+          </div>
+          <div class="chat good">
+            <div class="chat-label">✅ The right way</div>
+            <div class="bubble">Hi! I don't have access to the staging database — getting "Access Denied". Could you grant me access? Username: aphexi<span class="meta">16:00</span></div>
+            <div class="typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="bubble mine reply" hidden>Just added it, try again.<span class="meta">16:04</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Why does this matter?</h2>
+      <ul class="points">
+        <li><strong>Everyone's time is valuable:</strong> waiting to hear the question wastes time that could've gone to answering it.</li>
+        <li><strong>Communication is asynchronous:</strong> in work chat, the other person usually isn't online instantly; an incomplete question means several extra round-trips.</li>
+        <li><strong>Easier to search and forward:</strong> when everything is in one message, it's easier to find later or pass along to someone else.</li>
+        <li><strong>Respect for others' time:</strong> it shows you value the other person's time.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>So what should we do?</h2>
+      <p>Instead of sending just "hi" or "quick question," send everything at once:</p>
+      <div class="callout">Greeting + brief context + the actual question or request</div>
+      <p style="margin-top:16px;">If the other person isn't online, your message will be waiting, and they can give a complete answer whenever they get a chance — no need for a round of "hi", "you there?", "go ahead".</p>
+    </section>
+
+    <section class="card">
+      <h2>One important note</h2>
+      <p>Does this mean we shouldn't be polite? No! Saying hi is fine — just don't make it the <strong>only</strong> thing you send. Send the greeting together with the actual point, that's all.</p>
+    </section>
+
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <details>
+        <summary>Isn't it rude to skip the greeting?</summary>
+        <p>Not at all! Saying hi is fine — just send it together with the actual point in one message, instead of sending the greeting alone and waiting for a reply.</p>
+      </details>
+      <details>
+        <summary>What if my question is really long?</summary>
+        <p>It still helps to give a short summary up front and mention that you have more details, so the other person knows what to set time aside for.</p>
+      </details>
+      <details>
+        <summary>In my culture we greet this way — is this disrespectful?</summary>
+        <p>This isn't about politeness, it's about the efficiency of written communication — especially when the other person isn't online and you'd otherwise have to wait.</p>
+      </details>
+      <details>
+        <summary>Does this only apply to text chat?</summary>
+        <p>It matters most for asynchronous communication (chat, email, tickets); in a call or in person, since both sides are present at the same moment, it's less of an issue.</p>
+      </details>
+      <details>
+        <summary>What if I don't know exactly what my question is?</summary>
+        <p>Still explain what you do and don't know; even a rough explanation beats a lone "hi", since the other person can start thinking about it sooner.</p>
+      </details>
+    </section>
+
+    <footer>
+      This page is a Persian translation/rewrite of the well-known
+      "<a href="https://nohello.net" target="_blank" rel="noopener">nohello.net</a>" idea.
+    </footer>
+  </div>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var themeToggle = document.getElementById('themeToggle');
+  var themeLabel = document.getElementById('themeLabel');
+  var langToggle = document.getElementById('langToggle');
+  var copyBtn = document.getElementById('copyLink');
+  var copyLabel = document.getElementById('copyLabel');
+  var skipLink = document.getElementById('skipLink');
+  var toast = document.getElementById('toast');
+  var contentFa = document.getElementById('content-fa');
+  var contentEn = document.getElementById('content-en');
+
+  var strings = {
+    fa: { theme: 'تغییر تم', switchTo: 'English', copy: 'کپی لینک', copied: 'لینک کپی شد!', skip: 'پرش به محتوای اصلی' },
+    en: { theme: 'Toggle theme', switchTo: 'فارسی', copy: 'Copy link', copied: 'Link copied!', skip: 'Skip to main content' }
+  };
+
+  function safeGet(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+  function safeSet(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
+
+  function setLang(lang) {
+    root.lang = lang;
+    root.dir = lang === 'fa' ? 'rtl' : 'ltr';
+    contentFa.hidden = lang !== 'fa';
+    contentEn.hidden = lang !== 'en';
+    var s = strings[lang];
+    themeLabel.textContent = s.theme;
+    langToggle.textContent = s.switchTo;
+    copyLabel.textContent = s.copy;
+    skipLink.textContent = s.skip;
+    safeSet('nohello-lang', lang);
+    initTabs(lang === 'fa' ? contentFa : contentEn);
+  }
+
+  function setTheme(theme) {
+    if (theme) { root.setAttribute('data-theme', theme); } else { root.removeAttribute('data-theme'); }
+    var isDark = theme ? theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+    safeSet('nohello-theme', theme || '');
+  }
+
+  themeToggle.addEventListener('click', function () {
+    var current = root.getAttribute('data-theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var isDark = current ? current === 'dark' : prefersDark;
+    setTheme(isDark ? 'light' : 'dark');
+  });
+
+  langToggle.addEventListener('click', function () {
+    setLang(root.lang === 'fa' ? 'en' : 'fa');
+  });
+
+  copyBtn.addEventListener('click', function () {
+    var url = window.location.href;
+    var done = function () {
+      var lang = root.lang === 'en' ? 'en' : 'fa';
+      toast.textContent = strings[lang].copied;
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done).catch(function () { fallbackCopy(url, done); });
+    } else {
+      fallbackCopy(url, done);
+    }
+  });
+
+  function fallbackCopy(text, cb) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    cb();
+  }
+
+  function playTyping(panel) {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var goodChats = panel.querySelectorAll('.chat.good');
+    goodChats.forEach(function (chat) {
+      var indicator = chat.querySelector('.typing-indicator');
+      var reply = chat.querySelector('.reply');
+      if (!indicator || !reply) return;
+      reply.hidden = true;
+      indicator.style.display = '';
+      if (reduced) {
+        indicator.style.display = 'none';
+        reply.hidden = false;
+        return;
+      }
+      setTimeout(function () {
+        indicator.style.display = 'none';
+        reply.hidden = false;
+      }, 900);
     });
-  })();
+  }
+
+  function initTabs(container) {
+    var tablist = container.querySelector('[role="tablist"]');
+    if (!tablist || tablist.dataset.wired === '1') {
+      var activePanel = container.querySelector('.tabpanel:not([hidden])');
+      if (activePanel) playTyping(activePanel);
+      return;
+    }
+    tablist.dataset.wired = '1';
+    var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+
+    function activate(tab, focus) {
+      tabs.forEach(function (t) {
+        var selected = t === tab;
+        t.setAttribute('aria-selected', String(selected));
+        t.tabIndex = selected ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !selected;
+      });
+      if (focus) tab.focus();
+      var panel = document.getElementById(tab.getAttribute('aria-controls'));
+      if (panel) playTyping(panel);
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { activate(tab, false); });
+      tab.addEventListener('keydown', function (e) {
+        var idx = i;
+        if (e.key === 'ArrowRight') idx = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') idx = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') idx = 0;
+        else if (e.key === 'End') idx = tabs.length - 1;
+        else return;
+        e.preventDefault();
+        activate(tabs[idx], true);
+      });
+    });
+
+    var firstPanel = document.getElementById(tabs[0].getAttribute('aria-controls'));
+    if (firstPanel) playTyping(firstPanel);
+  }
+
+  var savedLang = safeGet('nohello-lang');
+  var savedTheme = safeGet('nohello-theme');
+  setLang(savedLang === 'en' ? 'en' : 'fa');
+  setTheme(savedTheme || null);
+})();
 </script>
 
 </body>
